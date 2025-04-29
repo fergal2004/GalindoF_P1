@@ -1,11 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using GalindoFP1.Models;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<GalindoFP1Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("GalindoFP1Context") ?? throw new InvalidOperationException("Connection string 'GalindoFP1Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<GalindoFP1Context>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("GalindoFP1Context")));
 
 var app = builder.Build();
 
@@ -18,16 +20,14 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
 app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
-
 app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
-
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

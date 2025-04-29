@@ -23,6 +23,6 @@ public class Reserva
     [Display(Name = "Cliente")]
     public int ClienteId { get; set; } // llave foranea
     [ForeignKey("ClienteId")]
-    
-    public Cliente? Cliente { get; set; } 
+
+    public Cliente? Cliente { get; set; }
 }

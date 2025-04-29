@@ -19,7 +19,8 @@ public class PlanRecompensas
     public int PuntosAcumulados { get; set; }
 
     [Display(Name = "Tipo de Recompensa")]
-    public string TipoRecompensa { 
+    public string TipoRecompensa
+    {
         get
         {
             return PuntosAcumulados < 500 ? "SILVER" : "GOLD";
