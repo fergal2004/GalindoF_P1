@@ -11,9 +11,9 @@ public class PlanRecompensas
     [Display(Name = "Nombre del Plan")]
     public string Nombre { get; set; }
 
-    [DataType(DataType.Date)]
     [Display(Name = "Fecha de Inicio")]
-    public DateTime FechaInicio { get; set; }
+    [RegularExpression(@"^\d{4}-\d{2}-\d{2}$", ErrorMessage = "El formato de fecha debe ser AAAA-MM-DD.")]
+    public string FechaInicio { get; set; }
 
     [Display(Name = "Puntos Acumulados")]
     public int PuntosAcumulados { get; set; }
@@ -26,4 +26,5 @@ public class PlanRecompensas
             return PuntosAcumulados < 500 ? "SILVER" : "GOLD";
         }
     }
+
 }

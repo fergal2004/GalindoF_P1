@@ -1,8 +1,70 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Información Personal";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4 animated fadeIn">Mi Información Personal</h1>
+
+                    <div class="embed-responsive embed-responsive-16by9 mb-3">
+                        <video src="/Imagenes/VideoFerran.mp4" controls autoplay muted loop class="embed-responsive-item rounded"></video>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-lg animated pulse infinite" onclick="mostrarInformacion()">
+                            <i class="bi bi-eye"></i> Ver mi información
+                        </button>
+                    </div>
+
+                    <div id="info" class="mt-4 p-3 border rounded bg-light animated fadeIn" style="display: none;">
+                        <p><strong>Nombre:</strong> Fernando Galindo</p>
+                        <p><strong>Profesión:</strong> Desarrollador de Software</p>
+                        <p><strong>Hobbies:</strong> Programación, Música, Videojuegos, Futbol y mas futbol</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Audio element -->
+<audio id="miSonido" src="https://www.soundjay.com/button/sounds/button-20.mp3" preload="auto"></audio>
+
+@section styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+    <style>
+        .card {
+            border: none;
+        }
+
+        .card-title {
+            color: #007bff; 
+        }
+
+        #info p {
+            font-size: 1.1rem;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        function mostrarInformacion() {
+            var infoDiv = document.getElementById('info');
+            var sonido = document.getElementById('miSonido');
+
+            if (infoDiv.style.display === 'none' || infoDiv.style.display === '') {
+                infoDiv.style.display = 'block';
+                infoDiv.classList.add('animated', 'fadeIn'); 
+                sonido.play(); 
+            } else {
+                infoDiv.classList.remove('animated', 'fadeIn'); 
+            }
+        }
+    </script>
+}
