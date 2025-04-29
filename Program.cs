@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<GalindoFP1Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("GalindoFP1Context") ?? throw new InvalidOperationException("Connection string 'GalindoFP1Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
